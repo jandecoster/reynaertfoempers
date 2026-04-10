@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReynaertRiders – Wielerclub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #F4420A; --orange-light: #FF6B35;
+      --black: #0D0D0D; --dark: #141414; --dark2: #1C1C1C;
+      --grey: #2A2A2A; --muted: #888; --white: #F5F5F0; --cream: #EDE8DF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 72px; background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(244,66,10,0.15); transition: background 0.3s; }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-logo-icon { width: 40px; height: 40px; background: var(--orange); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--white); }
+    .nav-logo-text span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+    .nav-links > li { position: relative; }
+    .nav-links a, .nav-links button { display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 1rem; color: var(--cream); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: none; cursor: pointer; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover, .nav-links button:hover { color: var(--orange); background: rgba(244,66,10,0.08); }
+    .nav-links .chevron { font-size: 0.6rem; transition: transform 0.2s; }
+    .nav-links li:hover .chevron { transform: rotate(180deg); }
+    .dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: var(--dark2); border: 1px solid rgba(244,66,10,0.2); border-radius: 6px; min-width: 200px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .nav-links li:hover .dropdown { display: block; }
+    .dropdown a { display: block; padding: 0.65rem 1.2rem; color: var(--cream); font-size: 0.85rem; border-radius: 0; border-left: 2px solid transparent; transition: all 0.15s; }
+    .dropdown a:hover { border-left-color: var(--orange); color: var(--orange); background: rgba(244,66,10,0.06); }
+    .nav-cta { padding: 0.5rem 1.4rem !important; background: var(--orange) !important; color: var(--black) !important; border-radius: 4px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--orange-light) !important; transform: translateY(-1px); color: var(--black) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: all 0.3s; }
+    .mobile-menu { display: none; }
+
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 72px; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(244,66,10,0.18) 0%, transparent 70%), linear-gradient(135deg, #0D0D0D 0%, #1a0a00 100%); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(244,66,10,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(244,66,10,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .hero-diagonal { position: absolute; right: -5%; top: 0; bottom: 0; width: 55%; background: rgba(244,66,10,0.04); clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%); border-left: 1px solid rgba(244,66,10,0.15); }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 4rem 3rem; width: 100%; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.7rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--orange); }
+    .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 11vw, 10rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease both; }
+    .hero-title span { color: var(--orange); }
+    .hero-title .block2 { display: block; -webkit-text-stroke: 1.5px rgba(255,255,255,0.18); color: transparent; }
+    .hero-sub { font-size: 1.15rem; line-height: 1.7; color: rgba(245,245,240,0.7); max-width: 520px; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.15s ease both; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2.2rem; background: var(--orange); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; border: 2px solid var(--orange); transition: all 0.2s; }
+    .btn-primary:hover { background: var(--orange-light); border-color: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,66,10,0.4); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2.2rem; background: transparent; color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; border: 2px solid rgba(255,255,255,0.25); transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--white); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); animation: fadeUp 0.8s 0.45s ease both; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--orange); }
+    .stat-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+    section { padding: 6rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .section-label { display: inline-flex; align-items: center; gap: 0.7rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+    .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange); }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+    .section-title span { color: var(--orange); }
+
+    #over-ons { background: var(--dark); position: relative; overflow: hidden; }
+    #over-ons::before { content: 'RIDERS'; position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 18rem; line-height: 1; color: rgba(255,255,255,0.02); pointer-events: none; white-space: nowrap; }
+    .over-ons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .over-ons-text p { font-size: 1.05rem; line-height: 1.8; color: rgba(245,245,240,0.75); margin-bottom: 1.2rem; }
+    .over-ons-text p strong { color: var(--orange); font-weight: 700; }
+    .feature-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .feature-list li { display: flex; align-items: center; gap: 0.8rem; font-size: 0.95rem; color: var(--cream); font-weight: 600; }
+    .feature-list li::before { content: '▶'; color: var(--orange); font-size: 0.6rem; flex-shrink: 0; }
+    .ov-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ov-card { background: var(--grey); border: 1px solid rgba(244,66,10,0.15); border-radius: 6px; padding: 2rem; position: relative; overflow: hidden; }
+    .ov-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), transparent); }
+    .ov-card-big { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: var(--orange); margin-bottom: 0.3rem; }
+    .ov-card p { color: var(--muted); font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .ov-accent { margin-top: 1rem; background: var(--orange); padding: 1.5rem 2rem; border-radius: 6px; }
+    .ov-accent p { color: var(--black); font-weight: 700; font-size: 1.05rem; }
+
+    #fietsgroepen { background: var(--black); }
+    .groups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 3rem; }
+    .group-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 2rem 1.5rem; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    .group-card:hover { transform: translateY(-4px); border-color: var(--orange); box-shadow: 0 16px 40px rgba(244,66,10,0.15); }
+    .group-badge { display: inline-block; padding: 0.25rem 0.8rem; border-radius: 2px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .group-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .group-speed { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.8rem; }
+    .group-speed strong { color: var(--cream); }
+    .group-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(245,245,240,0.6); }
+    .group-card::before { content: attr(data-letter); position: absolute; right: 1rem; bottom: -0.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; opacity: 0.06; pointer-events: none; }
+
+    #kalender { background: var(--dark); }
+    .kalender-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; margin-top: 3rem; }
+    .event-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); text-decoration: none; color: inherit; transition: all 0.2s; }
+    .event-item:hover .event-title { color: var(--orange); }
+    .event-date-box { flex-shrink: 0; text-align: center; background: var(--grey); border-radius: 4px; width: 52px; padding: 0.5rem 0.3rem; border-top: 3px solid var(--orange); }
+    .event-date-box .day { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; color: var(--white); }
+    .event-date-box .month { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .event-type { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 0.25rem; }
+    .event-title { font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.25rem; transition: color 0.2s; }
+    .event-meta { font-size: 0.85rem; color: var(--muted); }
+    .featured-event { background: var(--grey); border-radius: 8px; overflow: hidden; border: 1px solid rgba(244,66,10,0.2); }
+    .featured-event-bg { height: 200px; background: linear-gradient(135deg, #1a0800 0%, #2d1000 50%, #F4420A22 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .featured-event-bg .big-date { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; line-height: 1; color: rgba(244,66,10,0.15); position: absolute; }
+    .featured-event-bg .badge-label { position: relative; z-index: 2; background: var(--orange); color: var(--black); font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 2px; }
+    .featured-event-body { padding: 2rem; }
+    .featured-event-body h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.03em; color: var(--white); margin-bottom: 0.5rem; }
+    .featured-event-body p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+
+    #routes { background: var(--black); }
+    .routes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .route-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: block; }
+    .route-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .route-card-header { height: 140px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 1rem; }
+    .route-card-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.7)); }
+    .route-elevation { position: relative; z-index: 1; display: flex; align-items: flex-end; gap: 2px; height: 60px; width: 100%; }
+    .route-elevation .bar { flex: 1; background: var(--orange); opacity: 0.7; border-radius: 2px 2px 0 0; transition: opacity 0.2s; }
+    .route-card:hover .bar { opacity: 1; }
+    .route-card-body { padding: 1.5rem; }
+    .route-card-body h4 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+    .route-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .tag { padding: 0.2rem 0.6rem; border-radius: 2px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .tag-orange { background: rgba(244,66,10,0.15); color: var(--orange); }
+    .tag-grey { background: var(--grey); color: var(--muted); }
+    .route-stats { display: flex; gap: 1.2rem; }
+    .route-stat span { font-size: 0.8rem; color: var(--muted); }
+    .route-stat strong { display: block; font-size: 0.95rem; color: var(--cream); }
+
+    #word-lid { background: var(--orange); padding: 5rem 0; position: relative; overflow: hidden; }
+    #word-lid::before { content: 'JOIN'; position: absolute; right: 3rem; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 20rem; line-height: 1; color: rgba(0,0,0,0.08); pointer-events: none; }
+    .word-lid-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+    .word-lid-inner h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--black); line-height: 1; }
+    .word-lid-inner p { color: rgba(0,0,0,0.65); font-size: 1.1rem; margin-top: 0.5rem; max-width: 500px; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 2.5rem; background: var(--black); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; border: 2px solid var(--black); white-space: nowrap; transition: all 0.2s; flex-shrink: 0; }
+    .btn-dark:hover { background: var(--dark2); transform: translateY(-2px); }
+
+    #sponsors { background: var(--dark); }
+    .sponsor-intro { color: rgba(245,245,240,0.6); font-size: 1rem; max-width: 500px; margin-top: 0.5rem; margin-bottom: 3rem; line-height: 1.7; }
+    .sponsors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .sponsor-card { background: var(--grey); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; height: 100px; display: flex; align-items: center; justify-content: center; padding: 1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    .sponsor-card:hover { border-color: var(--orange); transform: translateY(-2px); }
+    .sponsor-card span { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; color: rgba(245,245,240,0.4); letter-spacing: 0.08em; text-align: center; }
+    .sponsor-cta { margin-top: 2rem; color: var(--muted); font-size: 0.9rem; }
+    .sponsor-cta a { color: var(--orange); font-weight: 600; text-decoration: none; }
+    .sponsor-cta a:hover { text-decoration: underline; }
+
+    #contact { background: var(--black); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+    .contact-info h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(244,66,10,0.1); border: 1px solid rgba(244,66,10,0.2); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .contact-item-text strong { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .contact-item-text span { color: var(--cream); font-size: 0.95rem; }
+    .contact-item-text a { color: var(--cream); text-decoration: none; }
+    .contact-item-text a:hover { color: var(--orange); }
+    .social-links { display: flex; gap: 0.75rem; margin-top: 2rem; }
+    .social-link { width: 44px; height: 44px; background: var(--grey); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; transition: all 0.2s; }
+    .social-link:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
+    .contact-form-card { background: var(--dark2); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 2.5rem; }
+    .contact-form-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--white); }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .form-group input, .form-group textarea { width: 100%; background: var(--grey); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 0.8rem 1rem; color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    footer { background: #080808; border-top: 1px solid rgba(244,66,10,0.1); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+    .footer-brand .logo-text span { color: var(--orange); }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; color: var(--muted); max-width: 260px; }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a { color: var(--muted); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(136,136,136,0.6); }
+    .footer-bottom a { color: rgba(136,136,136,0.6); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--orange); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: none; position: fixed; inset: 0; top: 72px; background: rgba(13,13,13,0.98); backdrop-filter: blur(12px); z-index: 99; flex-direction: column; padding: 2rem; overflow-y: auto; }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a { display: block; padding: 0.9rem 0; color: var(--cream); text-decoration: none; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
+      .mobile-menu a:hover { color: var(--orange); }
+      .mobile-menu .section-header { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-top: 1.5rem; margin-bottom: 0.2rem; font-weight: 700; }
+      .container { padding: 0 1.5rem; }
+      .over-ons-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .kalender-layout { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+      section { padding: 4rem 0; }
+      .hero-content { padding: 3rem 1.5rem; }
+    }
+    @media (max-width: 580px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .groups-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <div class="nav-logo-icon">🦊</div>
+    <span class="nav-logo-text">Reynaert<span>Riders</span></span>
+  </a>
+  <ul class="nav-links">
+    <li>
+      <button>Informatie <span class="chevron">▼</span></button>
+      <div class="dropdown">
+        <a href="#over-ons">Over ons</a>
+        <a href="#fietsgroepen">Fietsgroepen</a>
+        <a href="#routes">Routes</a>
+      </div>
+    </li>
+    <li><a href="#kalender">Kalender</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#word-lid" class="nav-cta">Word lid →</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="section-header">Informatie</div>
+  <a href="#over-ons" onclick="closeMobile()">Over ons</a>
+  <a href="#fietsgroepen" onclick="closeMobile()">Fietsgroepen</a>
+  <a href="#routes" onclick="closeMobile()">Routes</a>
+  <div class="section-header">Club</div>
+  <a href="#kalender" onclick="closeMobile()">Kalender</a>
+  <a href="#sponsors" onclick="closeMobile()">Sponsors</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <div style="margin-top:2rem;">
+    <a href="#word-lid" onclick="closeMobile()" style="color:var(--orange);font-weight:700;font-size:1.2rem;border-bottom:none;">Word lid →</a>
+  </div>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diagonal"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Wielerclub · Regio Gent</div>
+    <h1 class="hero-title">Reynaert<span>Riders</span><span class="block2">Samen Rijden</span></h1>
+    <p class="hero-sub">Passie voor de fiets, plezier in de groep. Bij de ReynaertRiders ben jij welkom — van recreatieve fietser tot ervaren wielrenner.</p>
+    <div class="hero-buttons">
+      <a href="#word-lid" class="btn-primary">Word lid ↗</a>
+      <a href="#over-ons" class="btn-secondary">Meer over ons</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">120+</div><div class="stat-label">Leden</div></div>
+      <div><div class="stat-num">5</div><div class="stat-label">Fietsgroepen</div></div>
+      <div><div class="stat-num">10+</div><div class="stat-label">Jaar actief</div></div>
+      <div><div class="stat-num">52</div><div class="stat-label">Ritten/jaar</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="over-ons">
+  <div class="container">
+    <div class="over-ons-grid">
+      <div class="over-ons-text reveal">
+        <div class="section-label">Over ons</div>
+        <h2 class="section-title">De <span>Reynaert</span>Riders</h2>
+        <p>Al meer dan <strong>10 jaar</strong> zijn de ReynaertRiders een vaste waarde in de regio Gent. Van vroege lenteritten tot koude herfstuitstapjes — samen op de fiets, dat is waar het om gaat.</p>
+        <p>Van eind februari tot eind september organiseren we elke <strong>zondag een wegrit</strong> voor onze vijf fietsgroepen. Tijdens de zomermaanden kan je ook op woensdagavond aansluiten.</p>
+        <p>Ook in de winter blijven we actief. Wanneer het weer het toelaat, rijden we op zaterdag en zondag verder.</p>
+        <ul class="feature-list">
+          <li>Wekelijkse ritten voor elk niveau</li>
+          <li>Gezellige sfeer met gelijkgestemde wielrenners</li>
+          <li>Professionele begeleiding en groepsafspraken</li>
+          <li>Exclusieve clubkledij en ledenvoordelen</li>
+          <li>Actief op Facebook, Instagram en Strava</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div style="position:relative;border-radius:8px;overflow:hidden;border:1px solid rgba(244,66,10,0.15);">
+          <img src="sfeer.png" alt="Sfeer bij de ReynaertRiders" style="width:100%;height:360px;object-fit:cover;object-position:center;display:block;filter:brightness(0.92);" />
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top, rgba(13,13,13,0.9) 0%, transparent 100%);">
+            <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:0.2rem;">Onze thuisbasis</p>
+            <p style="font-size:0.95rem;color:var(--cream);font-weight:600;">Na de rit is het ook gezellig 🍺</p>
+          </div>
+        </div>
+        <div class="ov-accent" style="margin-top:1rem;"><p>🦊 Rij jij binnenkort met ons mee?</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fietsgroepen">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Onze groepen</div>
+      <h2 class="section-title">Vijf <span>Fietsgroepen</span></h2>
+      <p style="color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:0;">Er is een groep voor elk niveau. Van rustige recreatieve fietser tot gedreven rouleur — jij past bij ons.</p>
+    </div>
+    <div class="groups-grid">
+      <div class="group-card" data-letter="A">
+        <div class="group-badge" style="background:rgba(239,68,68,0.15);color:#ef4444;">● Groep A</div>
+        <div class="group-name">Elitegroep</div>
+        <div class="group-speed">Snelheid: <strong>30–35 km/u</strong></div>
+        <div class="group-desc">Voor de ervaren wielrenner die graag tempopuren, hoge snelheden aanhoudt en ook klimmetjes niet schuwt.</div>
+      </div>
+      <div class="group-card" data-letter="B">
+        <div class="group-badge" style="background:rgba(249,115,22,0.15);color:#f97316;">● Groep B</div>
+        <div class="group-name">Gevorderden</div>
+        <div class="group-speed">Snelheid: <strong>27–31 km/u</strong></div>
+        <div class="group-desc">Sportieve fietsers die van een stevig tempo houden maar ook ruimte laten voor groepsplezier.</div>
+      </div>
+      <div class="group-card" data-letter="C">
+        <div class="group-badge" style="background:rgba(234,179,8,0.15);color:#eab308;">● Groep C</div>
+        <div class="group-name">Gevorderd Recreatief</div>
+        <div class="group-speed">Snelheid: <strong>24–28 km/u</strong></div>
+        <div class="group-desc">Een comfortabele mix van tempo en gezelligheid, perfect voor regelmatige fietsers.</div>
+      </div>
+      <div class="group-card" data-letter="D">
+        <div class="group-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;">● Groep D</div>
+        <div class="group-name">Recreatief</div>
+        <div class="group-speed">Snelheid: <strong>21–25 km/u</strong></div>
+        <div class="group-desc">Lekker fietsen zonder druk. Voor iedereen die geniet van de rit meer dan van het tempo.</div>
+      </div>
+      <div class="group-card" data-letter="E">
+        <div class="group-badge" style="background:rgba(99,102,241,0.15);color:#818cf8;">● Groep E</div>
+        <div class="group-name">Beginners</div>
+        <div class="group-speed">Snelheid: <strong>18–22 km/u</strong></div>
+        <div class="group-desc">Nieuw bij het wielrennen? Start hier! Rustig tempo, vriendelijke begeleiding en plezier voorop.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kalender">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Agenda</div>
+      <h2 class="section-title">Aankomende <span>Evenementen</span></h2>
+    </div>
+    <div class="kalender-layout reveal">
+      <div style="display:flex;flex-direction:column;">
+        <a class="event-item" href="#"><div class="event-date-box"><div class="day">20</div><div class="month">apr</div></div><div><div class="event-type">Wegrit</div><div class="event-title">Zondagrit – Alle groepen</div><div class="event-meta">08:30 · Vertrek Marktplein</div></div></a>
+        <a class="event-item" href="#"><div class="event-date-box"><div class="day">27</div><div class="month">apr</div></div><div><div class="event-type">Wegrit</div><div class="event-title">Zondagrit – Alle groepen</div><div class="event-meta">08:30 · Vertrek Marktplein</div></div></a>
+        <a class="event-item" href="#"><div class="event-date-box"><div class="day">07</div><div class="month">mei</div></div><div><div class="event-type">Avondrit</div><div class="event-title">Woensdagavondrit</div><div class="event-meta">18:30 · Groepen B, C &amp; D</div></div></a>
+        <a class="event-item" href="#"><div class="event-date-box"><div class="day">18</div><div class="month">mei</div></div><div><div class="event-type">Clubkampioenschappen</div><div class="event-title">Interne Tijdrit</div><div class="event-meta">09:00 · Alle leden welkom</div></div></a>
+      </div>
+      <div class="featured-event">
+        <div class="featured-event-bg"><div class="big-date">14</div><div class="badge-label">⭐ Hoofdevenement 2025</div></div>
+        <div class="featured-event-body">
+          <h3>ReynaertRiders Classic</h3>
+          <p>De jaarlijkse Classic is hét hoogtepunt van ons seizoen. Een sportieve tocht door de mooiste wegen van onze regio, met keuze uit meerdere afstanden. Iedereen is welkom!</p>
+          <div style="display:flex;gap:1.5rem;margin-bottom:1.5rem;">
+            <div><strong style="display:block;font-size:1.1rem;color:var(--white);">14 juni 2025</strong><span style="font-size:0.85rem;color:var(--muted);">Datum</span></div>
+            <div><strong style="display:block;font-size:1.1rem;color:var(--white);">3 afstanden</strong><span style="font-size:0.85rem;color:var(--muted);">60 / 100 / 140 km</span></div>
+          </div>
+          <a href="#" class="btn-primary" style="font-size:0.9rem;padding:0.7rem 1.6rem;">Naar evenement →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="routes">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Onze routes</div>
+      <h2 class="section-title">Populaire <span>Routes</span></h2>
+      <p style="color:var(--muted);max-width:500px;line-height:1.7;">Ontdek de mooiste wegen in onze regio. Van vlakke sprints tot beklimmingen in de Vlaamse Ardennen.</p>
+    </div>
+    <div class="routes-grid reveal">
+      <a href="#" class="route-card">
+        <div class="route-card-header" style="background:linear-gradient(135deg,#1a0a00,#2d1500);">
+          <div class="route-elevation">
+            <div class="bar" style="height:20%"></div><div class="bar" style="height:25%"></div><div class="bar" style="height:30%"></div><div class="bar" style="height:22%"></div><div class="bar" style="height:28%"></div><div class="bar" style="height:25%"></div><div class="bar" style="height:20%"></div><div class="bar" style="height:18%"></div><div class="bar" style="height:22%"></div><div class="bar" style="height:25%"></div><div class="bar" style="height:20%"></div><div class="bar" style="height:18%"></div>
+          </div>
+        </div>
+        <div class="route-card-body"><h4>De Vlakke Klassiekers</h4><div class="route-tags"><span class="tag tag-grey">Vlak</span><span class="tag tag-orange">Groep C/D</span></div><div class="route-stats"><div class="route-stat"><strong>85 km</strong><span>Afstand</span></div><div class="route-stat"><strong>620 m</strong><span>Hoogte</span></div><div class="route-stat"><strong>3u 15m</strong><span>Duur</span></div></div></div>
+      </a>
+      <a href="#" class="route-card">
+        <div class="route-card-header" style="background:linear-gradient(135deg,#0a1a00,#152d00);">
+          <div class="route-elevation">
+            <div class="bar" style="height:30%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:65%"></div><div class="bar" style="height:45%"></div><div class="bar" style="height:70%"></div><div class="bar" style="height:90%"></div><div class="bar" style="height:75%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:40%"></div><div class="bar" style="height:35%"></div><div class="bar" style="height:25%"></div>
+          </div>
+        </div>
+        <div class="route-card-body"><h4>Vlaamse Ardennen Tocht</h4><div class="route-tags"><span class="tag tag-grey">Heuvelachtig</span><span class="tag tag-orange">Groep A/B</span></div><div class="route-stats"><div class="route-stat"><strong>110 km</strong><span>Afstand</span></div><div class="route-stat"><strong>1450 m</strong><span>Hoogte</span></div><div class="route-stat"><strong>4u 00m</strong><span>Duur</span></div></div></div>
+      </a>
+      <a href="#" class="route-card">
+        <div class="route-card-header" style="background:linear-gradient(135deg,#0a0a1a,#15152d);">
+          <div class="route-elevation">
+            <div class="bar" style="height:15%"></div><div class="bar" style="height:20%"></div><div class="bar" style="height:18%"></div><div class="bar" style="height:40%"></div><div class="bar" style="height:35%"></div><div class="bar" style="height:30%"></div><div class="bar" style="height:25%"></div><div class="bar" style="height:20%"></div><div class="bar" style="height:18%"></div><div class="bar" style="height:15%"></div><div class="bar" style="height:12%"></div><div class="bar" style="height:10%"></div>
+          </div>
+        </div>
+        <div class="route-card-body"><h4>Avondrit Gentse Rand</h4><div class="route-tags"><span class="tag tag-grey">Vlak</span><span class="tag tag-orange">Alle groepen</span></div><div class="route-stats"><div class="route-stat"><strong>55 km</strong><span>Afstand</span></div><div class="route-stat"><strong>380 m</strong><span>Hoogte</span></div><div class="route-stat"><strong>2u 00m</strong><span>Duur</span></div></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="word-lid">
+  <div class="container">
+    <div class="word-lid-inner reveal">
+      <div>
+        <h2>Word lid van de<br>ReynaertRiders</h2>
+        <p>Sluit je aan bij onze community van gepassioneerde fietsers. Lidmaatschap geeft je toegang tot alle ritten, clubkledij, verzekering en meer.</p>
+      </div>
+      <a href="#contact" class="btn-dark">Lid worden →</a>
+    </div>
+  </div>
+</section>
+
+<section id="sponsors">
+  <div class="container reveal">
+    <div class="section-label">Partners</div>
+    <h2 class="section-title">Onze <span>Sponsors</span></h2>
+    <p class="sponsor-intro">Dankzij onze trouwe partners kunnen we onze club draaiende houden en telkens betere ritten organiseren.</p>
+    <div class="sponsors-grid">
+      <a href="#" class="sponsor-card"><span>Sponsor 1</span></a>
+      <a href="#" class="sponsor-card"><span>Sponsor 2</span></a>
+      <a href="#" class="sponsor-card"><span>Sponsor 3</span></a>
+      <a href="#" class="sponsor-card"><span>Sponsor 4</span></a>
+      <a href="#" class="sponsor-card"><span>Sponsor 5</span></a>
+      <a href="#" class="sponsor-card"><span>Sponsor 6</span></a>
+    </div>
+    <p class="sponsor-cta">Interesse in een partnerschap? <a href="#contact">Neem contact op →</a></p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Neem <span>Contact</span> Op</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <h3>Contactgegevens</h3>
+        <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-item-text"><strong>Adres</strong><span>Marktplein 1<br>9000 Gent</span></div></div>
+        <div class="contact-item"><div class="contact-icon">✉️</div><div class="contact-item-text"><strong>E-mail</strong><a href="mailto:info@reynaertriders.be">info@reynaertriders.be</a></div></div>
+        <div class="contact-item"><div class="contact-icon">📅</div><div class="contact-item-text"><strong>Wekelijkse rit</strong><span>Elke zondag om 08:30</span></div></div>
+        <div>
+          <h3 style="margin-top:2rem;">Volg ons</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link" style="font-style:italic;">in</a>
+            <a href="#" class="social-link">S</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Stuur een bericht</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Voornaam</label><input type="text" placeholder="Jan"/></div>
+          <div class="form-group"><label>Achternaam</label><input type="text" placeholder="Janssen"/></div>
+        </div>
+        <div class="form-group"><label>E-mailadres</label><input type="email" placeholder="jan@voorbeeld.be"/></div>
+        <div class="form-group"><label>Onderwerp</label><input type="text" placeholder="Lidmaatschap, vragen, …"/></div>
+        <div class="form-group"><label>Bericht</label><textarea placeholder="Schrijf hier je bericht…"></textarea></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="alert('Bedankt voor je bericht! We nemen snel contact op.')">Versturen →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text">Reynaert<span>Riders</span></div>
+        <p>Al meer dan 10 jaar de gepassioneerde wielerclub van de regio Gent. Samen fietsen, samen genieten.</p>
+      </div>
+      <div class="footer-col"><h4>Informatie</h4><ul><li><a href="#over-ons">Over ons</a></li><li><a href="#fietsgroepen">Fietsgroepen</a></li><li><a href="#routes">Routes</a></li><li><a href="#">Kledij</a></li><li><a href="#">Verzekering</a></li></ul></div>
+      <div class="footer-col"><h4>Club</h4><ul><li><a href="#kalender">Kalender</a></li><li><a href="#word-lid">Word lid</a></li><li><a href="#">Ledenvoordelen</a></li><li><a href="#">Ledenlijst</a></li><li><a href="#">Strava</a></li></ul></div>
+      <div class="footer-col"><h4>Meer</h4><ul><li><a href="#sponsors">Sponsors</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Privacy Beleid</a></li><li><a href="#">Interne afspraken</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ReynaertRiders vzw. Alle rechten voorbehouden.</p>
+      <a href="#">Privacy Beleid</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 3) * 0.1 + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background = window.scrollY > 60 ? 'rgba(13,13,13,0.98)' : 'rgba(13,13,13,0.92)';
+  });
+</script>
+</body>
+</html>

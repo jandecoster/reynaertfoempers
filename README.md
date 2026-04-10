@@ -99,8 +99,8 @@ Elke push naar de `main` branch wordt automatisch live gezet.
 
 | Platform | Link |
 |---|---|
-| GitHub | github.com/jouwgebruikersnaam/reynaertriders-website |
-| Live site | reynaertriders.netlify.app |
+| GitHub | github.com/jandecoster/reynaertfoempers |
+| Live site | reynaertfoempers.netlify.app |
 
 ---
 

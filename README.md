@@ -1,6 +1,6 @@
 # 🦊 ReynaertRiders – Wielerclub Website
 
-Officiële website van **ReynaertRiders**, een wielerclub uit de regio Gent.  
+Officiële website van **ReynaertRiders**, een wielerclub uit de regio Leuven.  
 Gebouwd als een statische HTML/CSS/JS site — geen frameworks, geen build tools, gewoon openen en klaar.
 
 ---

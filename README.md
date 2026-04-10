@@ -1,6 +1,6 @@
-# 🦊 ReynaertRiders – Wielerclub Website
+# 🦊 ReynaertFoempers – Wielerclub Website
 
-Officiële website van **ReynaertRiders**, een wielerclub uit de regio Leuven.  
+Officiële website van **ReynaertFoempers**, een wielerclub uit de regio Leuven.  
 Gebouwd als een statische HTML/CSS/JS site — geen frameworks, geen build tools, gewoon openen en klaar.
 
 ---
@@ -106,12 +106,12 @@ Elke push naar de `main` branch wordt automatisch live gezet.
 
 ## 📬 Contact
 
-- **Club:** ReynaertRiders vzw
+- **Club:** ReynaertFoempers vzw
 - **E-mail:** info@reynaertriders.be
-- **Facebook:** [ReynaertRiders](https://facebook.com)
+- **Facebook:** [ReynaertFoempers](https://facebook.com)
 - **Instagram:** [@reynaertriders](https://instagram.com)
-- **Strava:** [ReynaertRiders](https://strava.com)
+- **Strava:** [ReynaertFoempers](https://strava.com)
 
 ---
 
-*Gebouwd met ❤️ voor de ReynaertRiders — samen fietsen, samen genieten. 🚴*
+*Gebouwd met ❤️ voor de ReynaertFoempers — samen fietsen, samen genieten. 🚴*

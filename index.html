@@ -22,7 +22,7 @@
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 72px; background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(244,66,10,0.15); transition: background 0.3s; }
     .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
-    .nav-fox-svg { width: 48px; height: 40px; flex-shrink: 0; }
+    .nav-fox-svg { width: 58px; height: 48px; flex-shrink: 0; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
     .nav-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
     .nav-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(245,245,240,0.5); text-transform: uppercase; }
@@ -175,7 +175,7 @@
     footer { background: #080808; border-top: 1px solid rgba(244,66,10,0.1); padding: 4rem 0 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-brand .logo-text { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
-    .footer-fox-svg { width: 56px; height: 46px; flex-shrink: 0; }
+    .footer-fox-svg { width: 66px; height: 54px; flex-shrink: 0; }
     .footer-logo-text-inner { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
     .footer-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
     .footer-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(245,245,240,0.45); text-transform: uppercase; }
@@ -222,13 +222,31 @@
 
 <nav id="navbar">
   <a class="nav-logo" href="#hero">
-    <svg class="nav-fox-svg" viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 70 C18 70 10 60 8 48 C6 36 12 24 12 24 L2 10 L18 18 C22 14 28 10 36 8 C44 6 52 8 58 12 C64 8 72 6 80 8 L72 22 C78 28 82 36 80 48 C78 58 70 68 62 72 C56 76 44 78 36 74 C28 72 22 70 18 70Z" fill="#8B1A2E"/>
-      <path d="M36 74 C36 74 34 80 38 82 C42 84 46 80 44 76" fill="#8B1A2E"/>
-      <path d="M62 72 C62 72 64 78 68 76 C72 74 70 68 66 68" fill="#8B1A2E"/>
-      <ellipse cx="32" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
-      <ellipse cx="58" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
-      <path d="M40 52 C40 52 45 56 50 54 C55 52 58 48 58 48" stroke="#1a0a0e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <svg class="nav-fox-svg" viewBox="0 0 115 95" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
+      <!-- Tail (bushy, upper-left) -->
+      <ellipse cx="22" cy="32" rx="20" ry="11" transform="rotate(-50 22 32)"/>
+      <ellipse cx="12" cy="17" rx="13" ry="7" transform="rotate(-35 12 17)"/>
+      <circle cx="7" cy="8" r="7"/>
+      <!-- Body -->
+      <ellipse cx="52" cy="52" rx="28" ry="15" transform="rotate(-25 52 52)"/>
+      <!-- Neck -->
+      <ellipse cx="73" cy="37" rx="13" ry="8" transform="rotate(-35 73 37)"/>
+      <!-- Head -->
+      <circle cx="82" cy="22" r="14"/>
+      <!-- Snout -->
+      <ellipse cx="97" cy="33" rx="11" ry="7" transform="rotate(25 97 33)"/>
+      <!-- Ear left -->
+      <polygon points="73,14 67,0 79,10"/>
+      <!-- Ear right -->
+      <polygon points="84,10 84,0 94,7"/>
+      <!-- Front right leg -->
+      <ellipse cx="85" cy="64" rx="5" ry="14" transform="rotate(20 85 64)"/>
+      <!-- Front left leg -->
+      <ellipse cx="75" cy="66" rx="5" ry="13" transform="rotate(10 75 66)"/>
+      <!-- Back right leg -->
+      <ellipse cx="43" cy="70" rx="5" ry="13" transform="rotate(-10 43 70)"/>
+      <!-- Back left leg -->
+      <ellipse cx="33" cy="68" rx="5" ry="12" transform="rotate(-20 33 68)"/>
     </svg>
     <div class="nav-logo-text">
       <span class="nav-logo-main">ReynaertFoempers</span>
@@ -495,13 +513,31 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo-text">
-          <svg class="footer-fox-svg" viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 70 C18 70 10 60 8 48 C6 36 12 24 12 24 L2 10 L18 18 C22 14 28 10 36 8 C44 6 52 8 58 12 C64 8 72 6 80 8 L72 22 C78 28 82 36 80 48 C78 58 70 68 62 72 C56 76 44 78 36 74 C28 72 22 70 18 70Z" fill="#8B1A2E"/>
-            <path d="M36 74 C36 74 34 80 38 82 C42 84 46 80 44 76" fill="#8B1A2E"/>
-            <path d="M62 72 C62 72 64 78 68 76 C72 74 70 68 66 68" fill="#8B1A2E"/>
-            <ellipse cx="32" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
-            <ellipse cx="58" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
-            <path d="M40 52 C40 52 45 56 50 54 C55 52 58 48 58 48" stroke="#1a0a0e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <svg class="footer-fox-svg" viewBox="0 0 115 95" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
+            <!-- Tail (bushy, upper-left) -->
+            <ellipse cx="22" cy="32" rx="20" ry="11" transform="rotate(-50 22 32)"/>
+            <ellipse cx="12" cy="17" rx="13" ry="7" transform="rotate(-35 12 17)"/>
+            <circle cx="7" cy="8" r="7"/>
+            <!-- Body -->
+            <ellipse cx="52" cy="52" rx="28" ry="15" transform="rotate(-25 52 52)"/>
+            <!-- Neck -->
+            <ellipse cx="73" cy="37" rx="13" ry="8" transform="rotate(-35 73 37)"/>
+            <!-- Head -->
+            <circle cx="82" cy="22" r="14"/>
+            <!-- Snout -->
+            <ellipse cx="97" cy="33" rx="11" ry="7" transform="rotate(25 97 33)"/>
+            <!-- Ear left -->
+            <polygon points="73,14 67,0 79,10"/>
+            <!-- Ear right -->
+            <polygon points="84,10 84,0 94,7"/>
+            <!-- Front right leg -->
+            <ellipse cx="85" cy="64" rx="5" ry="14" transform="rotate(20 85 64)"/>
+            <!-- Front left leg -->
+            <ellipse cx="75" cy="66" rx="5" ry="13" transform="rotate(10 75 66)"/>
+            <!-- Back right leg -->
+            <ellipse cx="43" cy="70" rx="5" ry="13" transform="rotate(-10 43 70)"/>
+            <!-- Back left leg -->
+            <ellipse cx="33" cy="68" rx="5" ry="12" transform="rotate(-20 33 68)"/>
           </svg>
           <div class="footer-logo-text-inner">
             <span class="footer-logo-main">ReynaertFoempers</span>

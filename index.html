@@ -22,7 +22,7 @@
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 72px; background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(244,66,10,0.15); transition: background 0.3s; }
     .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
-    .nav-fox-svg { width: 58px; height: 48px; flex-shrink: 0; }
+    .nav-fox-svg { width: 68px; height: 58px; flex-shrink: 0; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
     .nav-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
     .nav-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(245,245,240,0.5); text-transform: uppercase; }
@@ -222,31 +222,29 @@
 
 <nav id="navbar">
   <a class="nav-logo" href="#hero">
-    <svg class="nav-fox-svg" viewBox="0 0 170 128" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
-      <!-- Bushy tail – large round shape, upper-left -->
-      <ellipse cx="26" cy="38" rx="24" ry="28"/>
-      <!-- Tail-to-body bridge -->
-      <ellipse cx="44" cy="58" rx="14" ry="10"/>
-      <!-- Body – diagonal -->
-      <ellipse cx="82" cy="52" rx="46" ry="13" transform="rotate(-18 82 52)"/>
+    <svg class="nav-fox-svg" viewBox="0 0 280 220" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
+      <!-- Tail -->
+      <ellipse cx="42" cy="68" rx="40" ry="52" transform="rotate(15 42 68)"/>
+      <!-- Body -->
+      <path d="M 68,90 C 80,70 110,62 140,66 C 165,70 185,80 195,92 C 180,115 155,122 125,118 C 98,114 74,108 68,90 Z"/>
       <!-- Neck -->
-      <ellipse cx="120" cy="36" rx="16" ry="10" transform="rotate(-35 120 36)"/>
+      <path d="M 195,92 C 208,78 222,72 232,76 C 228,95 215,104 202,104 C 196,104 191,100 195,92 Z"/>
       <!-- Head -->
-      <circle cx="130" cy="20" r="18"/>
+      <circle cx="244" cy="66" r="30"/>
       <!-- Left ear -->
-      <polygon points="120,14 113,0 124,10"/>
+      <polygon points="228,52 218,24 242,48"/>
       <!-- Right ear -->
-      <polygon points="132,9 134,-2 144,7"/>
-      <!-- Snout bump -->
-      <ellipse cx="146" cy="30" rx="10" ry="6" transform="rotate(15 146 30)"/>
-      <!-- Front right leg -->
-      <rect x="128" y="50" width="9" height="56" rx="4" transform="rotate(8 132 50)"/>
-      <!-- Front left leg -->
-      <rect x="115" y="54" width="9" height="52" rx="4" transform="rotate(2 119 54)"/>
-      <!-- Back right leg -->
-      <rect x="62" y="62" width="9" height="50" rx="4" transform="rotate(-5 66 62)"/>
-      <!-- Back left leg -->
-      <rect x="48" y="62" width="9" height="48" rx="4" transform="rotate(-12 52 62)"/>
+      <polygon points="248,44 256,16 270,40"/>
+      <!-- Snout -->
+      <ellipse cx="270" cy="80" rx="16" ry="10" transform="rotate(20 270 80)"/>
+      <!-- Front leg 1 -->
+      <path d="M 196,100 C 202,104 206,122 205,148 C 204,168 198,180 192,178 C 186,176 184,160 186,140 C 188,118 193,106 196,100 Z"/>
+      <!-- Front leg 2 -->
+      <path d="M 176,106 C 182,110 184,128 182,154 C 180,174 174,185 168,183 C 162,181 161,164 164,144 C 167,122 172,112 176,106 Z"/>
+      <!-- Back leg 1 -->
+      <path d="M 110,114 C 116,120 118,138 114,162 C 110,180 102,190 96,186 C 90,182 93,164 98,144 C 103,126 107,118 110,114 Z"/>
+      <!-- Back leg 2 -->
+      <path d="M 90,110 C 95,116 96,134 91,158 C 87,178 78,188 72,184 C 66,180 70,162 75,142 C 80,122 86,114 90,110 Z"/>
     </svg>
     <div class="nav-logo-text">
       <span class="nav-logo-main">ReynaertFoempers</span>
@@ -513,29 +511,29 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo-text">
-          <svg class="footer-fox-svg" viewBox="0 0 170 128" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
-            <!-- Bushy tail – large round shape, upper-left -->
-            <ellipse cx="26" cy="38" rx="24" ry="28"/>
-            <!-- Tail-to-body bridge -->
-            <ellipse cx="44" cy="58" rx="14" ry="10"/>
-            <!-- Body – diagonal -->
-            <ellipse cx="82" cy="52" rx="46" ry="13" transform="rotate(-18 82 52)"/>
+          <svg class="footer-fox-svg" viewBox="0 0 280 220" fill="#8B1A2E" xmlns="http://www.w3.org/2000/svg">
+            <!-- Tail -->
+            <ellipse cx="42" cy="68" rx="40" ry="52" transform="rotate(15 42 68)"/>
+            <!-- Body -->
+            <path d="M 68,90 C 80,70 110,62 140,66 C 165,70 185,80 195,92 C 180,115 155,122 125,118 C 98,114 74,108 68,90 Z"/>
             <!-- Neck -->
-            <ellipse cx="120" cy="36" rx="16" ry="10" transform="rotate(-35 120 36)"/>
+            <path d="M 195,92 C 208,78 222,72 232,76 C 228,95 215,104 202,104 C 196,104 191,100 195,92 Z"/>
             <!-- Head -->
-            <circle cx="130" cy="20" r="18"/>
+            <circle cx="244" cy="66" r="30"/>
             <!-- Left ear -->
-            <polygon points="120,14 113,0 124,10"/>
+            <polygon points="228,52 218,24 242,48"/>
             <!-- Right ear -->
-            <polygon points="132,9 134,-2 144,7"/>
-            <!-- Snout bump -->
-            <ellipse cx="146" cy="30" rx="10" ry="6" transform="rotate(15 146 30)"/>
-            <!-- Front right leg -->
-            <rect x="128" y="50" width="9" height="56" rx="4" transform="rotate(8 132 50)"/>
-            <!-- Front left leg -->
-            <rect x="115" y="54" width="9" height="52" rx="4" transform="rotate(2 119 54)"/>
-            <!-- Back right leg -->
-            <rect x="62" y="62" width="9" height="50" rx="4" transform="rotate(-5 66 62)"/>
+            <polygon points="248,44 256,16 270,40"/>
+            <!-- Snout -->
+            <ellipse cx="270" cy="80" rx="16" ry="10" transform="rotate(20 270 80)"/>
+            <!-- Front leg 1 -->
+            <path d="M 196,100 C 202,104 206,122 205,148 C 204,168 198,180 192,178 C 186,176 184,160 186,140 C 188,118 193,106 196,100 Z"/>
+            <!-- Front leg 2 -->
+            <path d="M 176,106 C 182,110 184,128 182,154 C 180,174 174,185 168,183 C 162,181 161,164 164,144 C 167,122 172,112 176,106 Z"/>
+            <!-- Back leg 1 -->
+            <path d="M 110,114 C 116,120 118,138 114,162 C 110,180 102,190 96,186 C 90,182 93,164 98,144 C 103,126 107,118 110,114 Z"/>
+            <!-- Back leg 2 -->
+            <path d="M 90,110 C 95,116 96,134 91,158 C 87,178 78,188 72,184 C 66,180 70,162 75,142 C 80,122 86,114 90,110 Z"/>
             <!-- Back left leg -->
             <rect x="48" y="62" width="9" height="48" rx="4" transform="rotate(-12 52 62)"/>
           </svg>

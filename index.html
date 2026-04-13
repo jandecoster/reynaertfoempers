@@ -21,10 +21,11 @@
     ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 72px; background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(244,66,10,0.15); transition: background 0.3s; }
-    .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .nav-logo-icon { width: 40px; height: 40px; background: var(--orange); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--white); }
-    .nav-logo-text span { color: var(--orange); }
+    .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+    .nav-fox-svg { width: 48px; height: 40px; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
+    .nav-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+    .nav-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; color: rgba(245,245,240,0.5); text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
     .nav-links > li { position: relative; }
     .nav-links a, .nav-links button { display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 1rem; color: var(--cream); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: none; cursor: pointer; border-radius: 4px; transition: color 0.2s, background 0.2s; }
@@ -173,8 +174,11 @@
 
     footer { background: #080808; border-top: 1px solid rgba(244,66,10,0.1); padding: 4rem 0 2rem; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
-    .footer-brand .logo-text span { color: var(--orange); }
+    .footer-brand .logo-text { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+    .footer-fox-svg { width: 56px; height: 46px; flex-shrink: 0; }
+    .footer-logo-text-inner { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
+    .footer-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+    .footer-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: rgba(245,245,240,0.45); text-transform: uppercase; }
     .footer-brand p { font-size: 0.9rem; line-height: 1.7; color: var(--muted); max-width: 260px; }
     .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.2rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
@@ -218,8 +222,18 @@
 
 <nav id="navbar">
   <a class="nav-logo" href="#hero">
-    <div class="nav-logo-icon">🦊</div>
-    <span class="nav-logo-text">Reynaert<span>Foempers</span></span>
+    <svg class="nav-fox-svg" viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 70 C18 70 10 60 8 48 C6 36 12 24 12 24 L2 10 L18 18 C22 14 28 10 36 8 C44 6 52 8 58 12 C64 8 72 6 80 8 L72 22 C78 28 82 36 80 48 C78 58 70 68 62 72 C56 76 44 78 36 74 C28 72 22 70 18 70Z" fill="#8B1A2E"/>
+      <path d="M36 74 C36 74 34 80 38 82 C42 84 46 80 44 76" fill="#8B1A2E"/>
+      <path d="M62 72 C62 72 64 78 68 76 C72 74 70 68 66 68" fill="#8B1A2E"/>
+      <ellipse cx="32" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
+      <ellipse cx="58" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
+      <path d="M40 52 C40 52 45 56 50 54 C55 52 58 48 58 48" stroke="#1a0a0e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-main">ReynaertFoempers</span>
+      <span class="nav-logo-sub">Leuven</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li>
@@ -480,7 +494,20 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-text">Reynaert<span>Foempers</span></div>
+        <div class="logo-text">
+          <svg class="footer-fox-svg" viewBox="0 0 100 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 70 C18 70 10 60 8 48 C6 36 12 24 12 24 L2 10 L18 18 C22 14 28 10 36 8 C44 6 52 8 58 12 C64 8 72 6 80 8 L72 22 C78 28 82 36 80 48 C78 58 70 68 62 72 C56 76 44 78 36 74 C28 72 22 70 18 70Z" fill="#8B1A2E"/>
+            <path d="M36 74 C36 74 34 80 38 82 C42 84 46 80 44 76" fill="#8B1A2E"/>
+            <path d="M62 72 C62 72 64 78 68 76 C72 74 70 68 66 68" fill="#8B1A2E"/>
+            <ellipse cx="32" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
+            <ellipse cx="58" cy="36" rx="4" ry="5" fill="#1a0a0e"/>
+            <path d="M40 52 C40 52 45 56 50 54 C55 52 58 48 58 48" stroke="#1a0a0e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="footer-logo-text-inner">
+            <span class="footer-logo-main">ReynaertFoempers</span>
+            <span class="footer-logo-sub">Leuven</span>
+          </div>
+        </div>
         <p>Al meer dan 10 jaar de gepassioneerde wielerclub van de regio Leuven. Samen fietsen, samen genieten.</p>
       </div>
       <div class="footer-col"><h4>Informatie</h4><ul><li><a href="#over-ons">Over ons</a></li><li><a href="#fietsgroepen">Fietsgroepen</a></li><li><a href="#routes">Routes</a></li><li><a href="#">Kledij</a></li><li><a href="#">Verzekering</a></li></ul></div>
